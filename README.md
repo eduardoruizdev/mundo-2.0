@@ -1,32 +1,60 @@
-# React + TypeScript + Vite
+# Mundo 3D
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Atlas mundial interativo em 3D desenvolvido para proporcionar uma experiência visual e interativa de exploração do globo terrestre.
 
-Currently, two official plugins are available:
+O projeto permite navegar pelo globo, visualizar diferentes países e acessar algumas informações básicas relacionadas a cada localidade.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Funcionalidades
 
-## React Compiler
+* Visualização do globo terrestre em 3D
+* Navegação e interação com o globo
+* Visualização dos países
+* Identificação de países selecionados
+* Exibição de informações básicas sobre os países
+* Visualização das fronteiras e divisões territoriais
+* Interface interativa e responsiva
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Objetivo do Projeto
 
-## Expanding the Oxlint configuration
+O projeto tem como objetivo explorar o desenvolvimento de interfaces interativas e experiências visuais utilizando tecnologias web, criando uma forma diferente de visualizar e explorar informações geográficas.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+## Tecnologias
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+* React
+* TypeScript
+* react-globe.gl
+* HTML
+* CSS
+* GeoJSON
+
+## Funcionamento
+
+O sistema utiliza um globo terrestre interativo para representar os países e suas respectivas divisões geográficas.
+
+Ao interagir com o globo, o usuário pode selecionar diferentes países e visualizar informações relacionadas à localidade selecionada.
+
+```text id="ynvujp"
+Mundo 3D
+│
+├── Globo Terrestre
+│   ├── Países
+│   ├── Fronteiras
+│   └── Interações
+│
+└── Informações
+    └── Dados básicos dos países
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## Status
+
+Em desenvolvimento, atualmente em fase final de desenvolvimento e próximo da conclusão.
+
+As principais funcionalidades já foram implementadas, restando ajustes finais, melhorias de interface e refinamentos na experiência de utilização.
+
+## Próximos Passos
+
+* Finalizar os ajustes visuais
+* Aprimorar a experiência de navegação
+* Expandir os dados apresentados sobre os países
+* Realizar testes e correções finais
+* Finalizar a versão inicial do projeto
