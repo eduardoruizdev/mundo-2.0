@@ -1,31 +1,43 @@
 .country-card {
-  position: absolute;
+  position: fixed; /* troque absolute por fixed */
 
-  top: 25px;
-  right: 25px;
+  top: 20px;
+  right: 20px;
 
   width: 380px;
-  max-height: 90vh;
-
-  overflow: auto;
+  height: calc(100vh - 40px); /* altura fixa da tela */
+  overflow-y: scroll;
+  overflow-x: hidden;
 
   padding: 22px;
-
   border-radius: 24px;
 
   background: rgba(8, 15, 30, 0.93);
-
   backdrop-filter: blur(18px);
 
-  border: 1px solid rgba(59, 130, 246, 0.25);
+  z-index: 9999;
 
-  box-shadow: 0 0 50px rgba(37, 99, 235, 0.35);
+  /* Suporte de barra de rolagem para Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(56, 189, 248, 0.5) transparent;
+}
 
-  color: white;
+/* Barra de rolagem personalizada (Chrome/Safari/Edge) */
+.country-card::-webkit-scrollbar {
+  width: 8px;
+}
 
-  z-index: 999;
+.country-card::-webkit-scrollbar-track {
+  background: transparent;
+}
 
-  animation: slide 0.5s ease;
+.country-card::-webkit-scrollbar-thumb {
+  background: rgba(56, 189, 248, 0.5);
+  border-radius: 10px;
+}
+
+.country-card::-webkit-scrollbar-thumb:hover {
+  background: rgba(56, 189, 248, 0.8);
 }
 
 @keyframes slide {
@@ -55,16 +67,20 @@
 
   background: #1e293b;
   color: white;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+.close-country:hover {
+  background: #334155;
 }
 
 .country-flag {
   width: 100%;
   height: 180px;
-
   object-fit: cover;
 
   border-radius: 16px;
-
   margin-bottom: 18px;
 }
 
@@ -72,45 +88,80 @@
   color: #38bdf8;
   margin-bottom: 8px;
   font-size: 30px;
+  text-align: center;
 }
 
 .description {
   color: #cbd5e1;
   line-height: 1.5;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .info-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .info-grid div {
   background: #111827;
   padding: 12px;
   border-radius: 14px;
+  text-align: center;
 }
 
 .info-grid span {
   display: block;
   color: #64748b;
   font-size: 12px;
+  margin-bottom: 4px;
 }
 
 .info-grid strong {
   color: white;
+  font-size: 18px;
 }
 
+/* VÍDEO */
+
 .video-container {
+  margin-top: 20px;
   width: 100%;
-  border-radius: 18px;
+  border-radius: 16px;
   overflow: hidden;
+  background: #000;
 }
 
 .video-container iframe {
   width: 100%;
-  height: 220px;
+  height: 240px;
   border: none;
+  display: block;
+}
+
+/* Responsivo para celular */
+@media (max-width: 768px) {
+  .country-card {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+
+    width: auto;
+    max-height: calc(100vh - 20px);
+    padding: 18px;
+  }
+
+  .country-card h2 {
+    font-size: 26px;
+  }
+
+  .country-flag {
+    height: 160px;
+  }
+
+  .video-container iframe {
+    height: 220px;
+  }
 }
