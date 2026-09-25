@@ -479,7 +479,7 @@ export default function GlobeComponent() {
           ================================================= */}
 
       <div className="app-title">
-        <h1>🌍 Mundo 2.0</h1>
+        <h1>🌍 Mundo </h1>
 
         <p>Atlas Mundial Interativo</p>
       </div>
