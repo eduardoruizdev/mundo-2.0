@@ -1,7 +1,20 @@
 /* =========================================================
    FUNDO DO UNIVERSO
-   PRETO + ESTRELAS
+   PRETO PROFUNDO + ESTRELAS + NEBULOSA SUTIL
    ========================================================= */
+
+:root {
+  --space-void: #000103;
+  --space-deep: #030814;
+  --space-mid: #08122a;
+  --accent-blue: #3b82f6;
+  --accent-blue-soft: #60a5fa;
+  --accent-cyan: #38bdf8;
+  --accent-ice: #93c5fd;
+  --text-primary: #f8fafc;
+  --text-muted: #94a3b8;
+  --glass-border: rgba(96, 165, 250, 0.28);
+}
 
 html,
 body,
@@ -14,7 +27,7 @@ body,
 
   overflow: hidden;
 
-  background: #000000;
+  background: var(--space-void);
 
   font-family: "Poppins", sans-serif;
 
@@ -34,86 +47,113 @@ body,
 
   overflow: hidden;
 
-  background: radial-gradient(
-    circle at 50% 50%,
-    #07101f 0%,
-    #02050b 35%,
-    #000000 72%,
-    #000000 100%
-  );
+  background:
+    radial-gradient(
+      ellipse 70% 55% at 50% 42%,
+      var(--space-mid) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      circle at 50% 50%,
+      #0a1730 0%,
+      #030712 38%,
+      #000000 74%,
+      #000000 100%
+    );
 
   isolation: isolate;
 }
 
 /* =========================================================
-   BRILHO MUITO SUTIL ATRÁS DA TERRA
+   BRILHO ATRÁS DA TERRA — respiração lenta
    ========================================================= */
 
 .globe-container::before {
   content: "";
 
   position: absolute;
-
   inset: 0;
 
   pointer-events: none;
 
   background: radial-gradient(
     circle at 50% 50%,
-    rgba(37, 99, 235, 0.12) 0%,
-    rgba(30, 64, 175, 0.045) 22%,
-    transparent 48%
+    rgba(59, 130, 246, 0.16) 0%,
+    rgba(37, 99, 235, 0.06) 24%,
+    transparent 50%
   );
 
   z-index: 0;
+
+  animation: globeGlowBreathe 8s ease-in-out infinite;
+}
+
+@keyframes globeGlowBreathe {
+  0%,
+  100% {
+    opacity: 0.85;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 /* =========================================================
-   ESTRELAS
+   ESTRELAS — com leve cintilação
    ========================================================= */
 
 .globe-container::after {
   content: "";
 
   position: absolute;
-
   inset: 0;
 
   pointer-events: none;
 
   z-index: 0;
 
-  opacity: 0.75;
+  opacity: 0.8;
 
   background-image:
-
     /* estrelas pequenas */
-    radial-gradient(1px 1px at 4% 8%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 4% 8%, rgba(255, 255, 255, 0.85), transparent),
     radial-gradient(1px 1px at 8% 42%, rgba(255, 255, 255, 0.65), transparent),
-    radial-gradient(1px 1px at 12% 76%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 12% 76%, rgba(255, 255, 255, 0.85), transparent),
     radial-gradient(1px 1px at 18% 21%, rgba(255, 255, 255, 0.7), transparent),
-    radial-gradient(1px 1px at 23% 58%, rgba(255, 255, 255, 0.75), transparent),
+    radial-gradient(1px 1px at 23% 58%, rgba(255, 255, 255, 0.8), transparent),
     radial-gradient(1px 1px at 28% 87%, rgba(255, 255, 255, 0.65), transparent),
-    radial-gradient(1px 1px at 33% 13%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 33% 13%, rgba(255, 255, 255, 0.85), transparent),
     radial-gradient(1px 1px at 38% 43%, rgba(255, 255, 255, 0.65), transparent),
-    radial-gradient(1px 1px at 43% 78%, rgba(255, 255, 255, 0.7), transparent),
-    radial-gradient(1px 1px at 48% 7%, rgba(255, 255, 255, 0.75), transparent),
-    radial-gradient(1px 1px at 53% 28%, rgba(255, 255, 255, 0.7), transparent),
-    radial-gradient(1px 1px at 58% 91%, rgba(255, 255, 255, 0.8), transparent),
-    radial-gradient(1px 1px at 63% 54%, rgba(255, 255, 255, 0.7), transparent),
-    radial-gradient(1px 1px at 68% 12%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 43% 78%, rgba(255, 255, 255, 0.75), transparent),
+    radial-gradient(1px 1px at 48% 7%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 53% 28%, rgba(255, 255, 255, 0.75), transparent),
+    radial-gradient(1px 1px at 58% 91%, rgba(255, 255, 255, 0.85), transparent),
+    radial-gradient(1px 1px at 63% 54%, rgba(255, 255, 255, 0.75), transparent),
+    radial-gradient(1px 1px at 68% 12%, rgba(255, 255, 255, 0.85), transparent),
     radial-gradient(1px 1px at 73% 81%, rgba(255, 255, 255, 0.65), transparent),
-    radial-gradient(1px 1px at 78% 38%, rgba(255, 255, 255, 0.8), transparent),
-    radial-gradient(1px 1px at 83% 67%, rgba(255, 255, 255, 0.7), transparent),
-    radial-gradient(1px 1px at 88% 17%, rgba(255, 255, 255, 0.75), transparent),
-    radial-gradient(1px 1px at 93% 48%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 78% 38%, rgba(255, 255, 255, 0.85), transparent),
+    radial-gradient(1px 1px at 83% 67%, rgba(255, 255, 255, 0.75), transparent),
+    radial-gradient(1px 1px at 88% 17%, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 93% 48%, rgba(255, 255, 255, 0.85), transparent),
     radial-gradient(1px 1px at 97% 88%, rgba(255, 255, 255, 0.65), transparent),
     /* estrelas maiores */
-    radial-gradient(2px 2px at 15% 90%, rgba(219, 234, 254, 0.85), transparent),
-    radial-gradient(2px 2px at 31% 67%, rgba(255, 255, 255, 0.9), transparent),
-    radial-gradient(2px 2px at 69% 32%, rgba(219, 234, 254, 0.9), transparent),
-    radial-gradient(2px 2px at 86% 76%, rgba(255, 255, 255, 0.85), transparent),
-    radial-gradient(2px 2px at 94% 9%, rgba(219, 234, 254, 0.8), transparent);
+    radial-gradient(2px 2px at 15% 90%, rgba(219, 234, 254, 0.9), transparent),
+    radial-gradient(2px 2px at 31% 67%, rgba(255, 255, 255, 0.95), transparent),
+    radial-gradient(2px 2px at 69% 32%, rgba(219, 234, 254, 0.95), transparent),
+    radial-gradient(2px 2px at 86% 76%, rgba(255, 255, 255, 0.9), transparent),
+    radial-gradient(2px 2px at 94% 9%, rgba(219, 234, 254, 0.85), transparent);
+
+  animation: starsTwinkle 6s ease-in-out infinite;
+}
+
+@keyframes starsTwinkle {
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.55;
+  }
 }
 
 /* =========================================================
@@ -139,7 +179,6 @@ canvas {
 
 .decorative-planets {
   position: absolute;
-
   inset: 0;
 
   z-index: 2;
@@ -157,21 +196,13 @@ canvas {
   object-fit: contain;
 
   pointer-events: none;
-
   user-select: none;
-
   -webkit-user-drag: none;
 
-  /*
-    Importante:
-    não colocar filter: blur().
-    As imagens ficam leves e nítidas.
-  */
+  filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.55));
 
   will-change: transform;
-
   backface-visibility: hidden;
-
   transform: translate3d(0, 0, 0);
 }
 
@@ -188,7 +219,7 @@ canvas {
 
   opacity: 0.58;
 
-  animation: planetMarsFloat 10s ease-in-out infinite;
+  animation: planetMarsFloat 10s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 @keyframes planetMarsFloat {
@@ -196,7 +227,6 @@ canvas {
   100% {
     transform: translate3d(0, 0, 0) rotate(-3deg);
   }
-
   50% {
     transform: translate3d(0, -9px, 0) rotate(3deg);
   }
@@ -215,7 +245,7 @@ canvas {
 
   opacity: 0.4;
 
-  animation: planetJupiterFloat 14s ease-in-out infinite;
+  animation: planetJupiterFloat 14s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 @keyframes planetJupiterFloat {
@@ -223,7 +253,6 @@ canvas {
   100% {
     transform: translate3d(0, 0, 0) rotate(1deg);
   }
-
   50% {
     transform: translate3d(0, 11px, 0) rotate(-1deg);
   }
@@ -242,7 +271,7 @@ canvas {
 
   opacity: 0.45;
 
-  animation: planetSaturnFloat 16s ease-in-out infinite;
+  animation: planetSaturnFloat 16s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 @keyframes planetSaturnFloat {
@@ -250,7 +279,6 @@ canvas {
   100% {
     transform: translate3d(0, 0, 0) rotate(-7deg);
   }
-
   50% {
     transform: translate3d(9px, -9px, 0) rotate(-3deg);
   }
@@ -269,7 +297,7 @@ canvas {
 
   opacity: 0.45;
 
-  animation: planetNeptuneFloat 12s ease-in-out infinite;
+  animation: planetNeptuneFloat 12s cubic-bezier(0.45, 0, 0.55, 1) infinite;
 }
 
 @keyframes planetNeptuneFloat {
@@ -277,7 +305,6 @@ canvas {
   100% {
     transform: translate3d(0, 0, 0);
   }
-
   50% {
     transform: translate3d(-7px, -10px, 0);
   }
@@ -296,7 +323,6 @@ canvas {
   z-index: 999;
 
   pointer-events: none;
-
   user-select: none;
 
   color: white;
@@ -306,24 +332,29 @@ canvas {
   margin: 0;
 
   font-size: 32px;
-
   line-height: 1.1;
-
   font-weight: 700;
-
   letter-spacing: -0.7px;
 
-  color: #60a5fa;
+  background: linear-gradient(
+    135deg,
+    #93c5fd 0%,
+    var(--accent-blue-soft) 45%,
+    var(--accent-cyan) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 
-  text-shadow: 0 0 12px rgba(59, 130, 246, 0.35);
+  filter: drop-shadow(0 0 16px rgba(59, 130, 246, 0.35));
 }
 
 .app-title p {
   margin: 6px 0 0;
 
-  color: #94a3b8;
-
+  color: var(--text-muted);
   font-size: 14px;
+  letter-spacing: 0.1px;
 }
 
 /* =========================================================
@@ -335,30 +366,33 @@ canvas {
 
   top: 30px;
   left: 50%;
-
   transform: translateX(-50%);
 
   z-index: 1000;
 
-  padding: 12px 25px;
+  padding: 12px 26px;
 
   border-radius: 999px;
 
-  background: rgba(5, 10, 18, 0.94);
-
-  border: 1px solid rgba(96, 165, 250, 0.3);
+  background: linear-gradient(
+    180deg,
+    rgba(10, 18, 34, 0.96),
+    rgba(4, 9, 18, 0.96)
+  );
+  border: 1px solid var(--glass-border);
 
   color: white;
-
   font-size: 17px;
-
   font-weight: 600;
+  letter-spacing: 0.1px;
 
   white-space: nowrap;
-
   pointer-events: none;
 
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+    0 0 22px rgba(59, 130, 246, 0.15);
 }
 
 /* =========================================================
@@ -366,20 +400,20 @@ canvas {
    ========================================================= */
 
 .globe-tooltip {
-  padding: 10px 13px;
+  padding: 11px 14px;
 
   border-radius: 12px;
 
   background: rgba(3, 8, 15, 0.97);
-
-  border: 1px solid rgba(96, 165, 250, 0.28);
+  border: 1px solid var(--glass-border);
 
   color: white;
 
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.5),
+    0 0 16px rgba(56, 189, 248, 0.12);
 
   font-family: "Poppins", sans-serif;
-
   white-space: nowrap;
 }
 
@@ -389,18 +423,18 @@ canvas {
   margin-bottom: 3px;
 
   font-size: 14px;
+  color: var(--text-primary);
 }
 
 .globe-tooltip span {
   display: block;
 
-  color: #93c5fd;
-
+  color: var(--accent-ice);
   font-size: 11px;
 }
 
 /* =========================================================
-   CARD DO PAÍS
+   CARD DO PAÍS (base)
    ========================================================= */
 
 .country-card {
@@ -411,9 +445,7 @@ canvas {
   color: white;
 
   background: rgba(3, 9, 18, 0.97);
-
   border: 1px solid rgba(96, 165, 250, 0.25);
-
   border-radius: 20px;
 
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.6);
@@ -421,50 +453,48 @@ canvas {
   overflow: hidden;
 }
 
-/* =========================================================
-   CARD — IMAGENS
-   ========================================================= */
-
 .country-card img {
   display: block;
 
   max-width: 100%;
-
   height: auto;
 
   object-fit: cover;
 }
-
-/* =========================================================
-   CARD — TEXTOS
-   ========================================================= */
 
 .country-card h1,
 .country-card h2,
 .country-card h3 {
   margin-top: 0;
 
-  color: #f8fafc;
+  color: var(--text-primary);
 }
 
 .country-card p {
-  color: #94a3b8;
-
-  line-height: 1.5;
+  color: var(--text-muted);
+  line-height: 1.6;
 }
-
-/* =========================================================
-   BOTÕES
-   ========================================================= */
 
 .country-card button {
   border: none;
-
   outline: none;
 
   cursor: pointer;
 
   font-family: inherit;
+
+  transition:
+    transform 0.15s ease,
+    filter 0.15s ease;
+}
+
+.country-card button:hover {
+  filter: brightness(1.08);
+}
+
+.country-card button:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
 }
 
 /* =========================================================
@@ -487,9 +517,7 @@ canvas {
 
   .country-label {
     top: 22px;
-
     padding: 10px 20px;
-
     font-size: 15px;
   }
 
@@ -530,69 +558,52 @@ canvas {
 
   .app-title p {
     margin-top: 3px;
-
     font-size: 10px;
   }
 
   .country-label {
     top: 15px;
-
     max-width: 42vw;
-
     padding: 8px 15px;
-
     font-size: 13px;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
   }
 
   .planet-mars {
     width: 52px;
     height: 52px;
-
     left: -5px;
-
     opacity: 0.42;
   }
 
   .planet-jupiter {
     width: 72px;
     height: 72px;
-
     right: -15px;
-
     opacity: 0.32;
   }
 
   .planet-saturn {
     width: 95px;
     height: 95px;
-
     left: -38px;
-
     opacity: 0.35;
   }
 
   .planet-neptune {
     width: 50px;
     height: 50px;
-
     right: -4px;
-
     opacity: 0.35;
   }
 
   .country-card {
     left: 12px !important;
-
     right: 12px !important;
-
     bottom: 12px !important;
 
     width: auto !important;
-
     max-width: none !important;
 
     border-radius: 18px;
@@ -614,7 +625,6 @@ canvas {
 
   .country-label {
     font-size: 12px;
-
     padding: 7px 13px;
   }
 
@@ -644,7 +654,9 @@ canvas {
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-  .decorative-planet {
+  .decorative-planet,
+  .globe-container::before,
+  .globe-container::after {
     animation: none !important;
   }
 }

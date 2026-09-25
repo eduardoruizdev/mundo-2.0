@@ -1,30 +1,69 @@
-.country-card {
-  position: fixed; /* troque absolute por fixed */
+/* =========================================================
+   PAINEL DO PAÍS
+   VIDRO ESCURO + BORDA LUMINOSA
+   ========================================================= */
 
+:root {
+  --panel-bg: rgba(7, 13, 26, 0.94);
+  --panel-border: rgba(59, 130, 246, 0.28);
+  --panel-accent: #38bdf8;
+  --panel-accent-strong: #60a5fa;
+  --panel-text: #f8fafc;
+  --panel-muted: #94a3b8;
+}
+
+.country-card,
+.country-card * {
+  box-sizing: border-box;
+}
+
+.country-card {
+  position: fixed;
   top: 20px;
   right: 20px;
+  bottom: 20px;
 
   width: 380px;
-  height: calc(100vh - 40px); /* altura fixa da tela */
-  overflow-y: scroll;
+  height: calc(100vh - 40px);
+  max-height: calc(100vh - 40px);
+
+  overflow-y: auto;
   overflow-x: hidden;
 
-  padding: 22px;
+  padding: 24px;
   border-radius: 24px;
 
-  background: rgba(8, 15, 30, 0.93);
-  backdrop-filter: blur(18px);
+  background:
+    linear-gradient(var(--panel-bg), var(--panel-bg)) padding-box,
+    linear-gradient(
+        160deg,
+        rgba(96, 165, 250, 0.55),
+        rgba(56, 189, 248, 0.05) 45%,
+        rgba(59, 130, 246, 0.35)
+      )
+      border-box;
+  border: 1px solid transparent;
 
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.55),
+    0 0 60px rgba(37, 99, 235, 0.22);
+
+  color: var(--panel-text);
   z-index: 9999;
 
-  /* Suporte de barra de rolagem para Firefox */
+  animation: panelSlideIn 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Firefox */
   scrollbar-width: thin;
   scrollbar-color: rgba(56, 189, 248, 0.5) transparent;
 }
 
-/* Barra de rolagem personalizada (Chrome/Safari/Edge) */
+/* Barra de rolagem (Chrome, Edge e Safari) */
 .country-card::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 
 .country-card::-webkit-scrollbar-track {
@@ -40,40 +79,64 @@
   background: rgba(56, 189, 248, 0.8);
 }
 
-@keyframes slide {
+/* Animação de entrada do painel */
+@keyframes panelSlideIn {
   from {
     opacity: 0;
-    transform: translateX(120%);
+    transform: translateX(60px) scale(0.98);
   }
-
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(0) scale(1);
   }
 }
 
+/* =========================================================
+   BOTÃO FECHAR
+   ========================================================= */
+
 .close-country {
   position: absolute;
-  top: 12px;
+  top: 14px;
   right: 14px;
 
   width: 34px;
   height: 34px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   border-radius: 50%;
-  border: none;
+  border: 1px solid rgba(148, 163, 184, 0.2);
 
   cursor: pointer;
 
-  background: #1e293b;
-  color: white;
-  font-size: 18px;
-  transition: 0.2s;
+  background: rgba(30, 41, 59, 0.85);
+  color: var(--panel-text);
+  font-size: 16px;
+  line-height: 1;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .close-country:hover {
-  background: #334155;
+  background: rgba(51, 65, 85, 0.95);
+  border-color: rgba(148, 163, 184, 0.4);
+  transform: rotate(90deg);
 }
+
+.close-country:focus-visible {
+  outline: 2px solid var(--panel-accent);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   BANDEIRA
+   ========================================================= */
 
 .country-flag {
   width: 100%;
@@ -81,57 +144,76 @@
   object-fit: cover;
 
   border-radius: 16px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
+
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
+
+/* =========================================================
+   NOME DO PAÍS
+   ========================================================= */
 
 .country-card h2 {
-  color: #38bdf8;
-  margin-bottom: 8px;
-  font-size: 30px;
+  margin: 0 0 20px;
+
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
   text-align: center;
+
+  background: linear-gradient(
+    135deg,
+    var(--panel-accent-strong),
+    var(--panel-accent)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.description {
-  color: #cbd5e1;
-  line-height: 1.5;
-  margin-bottom: 20px;
-  text-align: center;
-}
+.country-card h2::after {
+  content: "";
 
-.info-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-bottom: 24px;
-}
-
-.info-grid div {
-  background: #111827;
-  padding: 12px;
-  border-radius: 14px;
-  text-align: center;
-}
-
-.info-grid span {
   display: block;
-  color: #64748b;
-  font-size: 12px;
-  margin-bottom: 4px;
+
+  width: 46px;
+  height: 3px;
+  margin: 10px auto 0;
+
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--panel-accent),
+    transparent
+  );
 }
 
-.info-grid strong {
-  color: white;
-  font-size: 18px;
+/* =========================================================
+   TEXTO CORRIDO
+   ========================================================= */
+
+.country-card p {
+  color: var(--panel-muted);
+  line-height: 1.65;
+  font-size: 14.5px;
 }
 
-/* VÍDEO */
+/* =========================================================
+   VÍDEO
+   ========================================================= */
 
 .video-container {
-  margin-top: 20px;
+  margin-top: 22px;
   width: 100%;
+
   border-radius: 16px;
   overflow: hidden;
+
   background: #000;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
 
 .video-container iframe {
@@ -141,7 +223,81 @@
   display: block;
 }
 
-/* Responsivo para celular */
+/* =========================================================
+   BOTÃO ABRIR PDF
+   ========================================================= */
+
+.open-pdf-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+
+  margin: 22px 0 16px;
+  padding: 13px;
+
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14.5px;
+  letter-spacing: 0.2px;
+
+  color: white;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+
+  border-radius: 12px;
+
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.open-pdf-button:hover {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  box-shadow: 0 10px 26px rgba(37, 99, 235, 0.5);
+  transform: translateY(-2px);
+}
+
+.open-pdf-button:active {
+  transform: translateY(0);
+}
+
+.open-pdf-button:focus-visible {
+  outline: 2px solid var(--panel-accent);
+  outline-offset: 2px;
+}
+
+/* =========================================================
+   PDF
+   ========================================================= */
+
+.pdf-container {
+  width: 100%;
+  height: 600px;
+
+  border-radius: 16px;
+  overflow: hidden;
+
+  background: white;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.pdf-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
+
 @media (max-width: 768px) {
   .country-card {
     top: 10px;
@@ -149,12 +305,14 @@
     left: 10px;
 
     width: auto;
-    max-height: calc(100vh - 20px);
-    padding: 18px;
+    height: calc(100vh - 20px);
+
+    padding: 20px;
+    border-radius: 20px;
   }
 
   .country-card h2 {
-    font-size: 26px;
+    font-size: 24px;
   }
 
   .country-flag {
@@ -163,5 +321,24 @@
 
   .video-container iframe {
     height: 220px;
+  }
+
+  .pdf-container {
+    height: 500px;
+  }
+}
+
+/* =========================================================
+   REDUZIR ANIMAÇÕES SE O USUÁRIO PREFERIR
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .country-card {
+    animation: none !important;
+  }
+
+  .close-country,
+  .open-pdf-button {
+    transition: none !important;
   }
 }
