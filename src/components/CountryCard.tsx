@@ -241,12 +241,9 @@ export default function CountryCard({ iso, onClose }: Props) {
   // Bandeira correta
   const flagCode = flagCodes[iso] || iso.slice(0, 2).toLowerCase();
 
-  // Conteúdo (vídeo ou PDF)
-  const video = country && "video" in country ? country.video : undefined;
-  const pdf = country && "pdf" in country ? country.pdf : undefined;
-
   return (
-    <div className="country-card">
+    // translate="no" + notranslate: impede o navegador de traduzir (EN -> PT)
+    <div className="country-card notranslate" translate="no">
       {/* Botão fechar */}
       <button className="close-country" onClick={onClose}>
         ✕
@@ -261,37 +258,6 @@ export default function CountryCard({ iso, onClose }: Props) {
 
       {/* Nome do país */}
       <h2>{countryName}</h2>
-
-      {/* Vídeo */}
-      {video && (
-        <div className="video-container">
-          <iframe
-            src={video}
-            title={`Vídeo sobre ${countryName}`}
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
-      )}
-
-      {/* PDF */}
-      {pdf && (
-        <>
-          <a
-            href={pdf}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="open-pdf-button"
-          >
-            📄 Abrir documento em nova aba
-          </a>
-
-          <div className="pdf-container">
-            <iframe src={pdf} title={`Documento sobre ${countryName}`} />
-          </div>
-        </>
-      )}
     </div>
   );
 }
